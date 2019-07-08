@@ -1,0 +1,22 @@
+{
+    "name": "ex4x-example",
+    "version": "1.0.0",
+    "description": "This is a ES4X empty project.",
+    "main": "dist/index.js",
+    "scripts": {
+        "test": "es4x-launcher test js:index.test.js",
+        "postinstall": "es4x install",
+        "prestart": "tsc",
+        "start": "es4x-launcher"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@vertx/core": "^3.7.1",
+        "@vertx/web": "^3.7.1"
+    },
+    "devDependencies": {
+        "@vertx/unit": "^3.7.1",
+        "typescript": "^3.5.2"
+    }
+}
