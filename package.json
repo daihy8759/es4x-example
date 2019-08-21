@@ -12,11 +12,11 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@vertx/core": "^3.7.1",
-        "@vertx/web": "^3.7.1"
+        "@vertx/core": "^3.8.0",
+        "@vertx/web": "^3.8.0"
     },
     "devDependencies": {
-        "@vertx/unit": "^3.7.1",
+        "@vertx/unit": "^3.8.0",
         "typescript": "^3.5.2"
     }
 }
