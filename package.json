@@ -6,13 +6,14 @@
     "scripts": {
         "test": "es4x-launcher test js:index.test.js",
         "postinstall": "es4x install",
-        "prestart": "tsc",
+        "prestart": "tsc || true",
         "start": "es4x-launcher"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "@vertx/core": "^3.8.0",
+        "@vertx/pg-client": "^3.8.0",
         "@vertx/web": "^3.8.0"
     },
     "devDependencies": {
