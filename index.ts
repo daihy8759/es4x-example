@@ -1,5 +1,4 @@
-/// <reference types="@vertx/core/runtime" />
-// @ts-check
+/// <reference types="es4x" />
 import { PgPool } from '@vertx/pg-client';
 import { PgConnectOptions } from '@vertx/pg-client/options';
 import { Tuple } from '@vertx/sql-client';
@@ -19,30 +18,27 @@ const pgPool = PgPool.pool(
 );
 
 app.route('/').handler(async ctx => {
-    pgPool.preparedQuery('SELECT id from world where id=$1', Tuple.of(1), ar => {
-        if (ar.succeeded()) {
-            const row = ar
-                .result()
-                .iterator()
-                .next();
-            ctx.response().end(
-                JSON.stringify({
-                    id: row.getInteger('id')
-                })
-            );
-        } else {
-            ctx.response().end(
-                JSON.stringify({
-                    error: ar.cause().message
-                })
-            );
-        }
-    });
+    const rowSet = await pgPool.preparedQuery('SELECT id from world where id=$1')
+        .executeBatch(Tuple.of(1));
+    if (rowSet.rowCount() === 0){
+        await ctx.response().end(  JSON.stringify({
+            success: false,
+            message: "data not found!"
+        }));
+        return;
+    }
+    await ctx.response().end(
+        JSON.stringify({
+            id: rowSet.iterator().next().getInteger('id')
+        })
+    );
 });
 
 vertx
     .createHttpServer()
     .requestHandler(app)
-    .listen(8080);
+    .listen(8080)
+    .then(()=> {
+        console.log('Server listening at: http://localhost:8080/');
+    });
 
-console.log('Server listening at: http://localhost:8080/');

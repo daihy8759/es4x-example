@@ -4,20 +4,21 @@
     "description": "This is a ES4X empty project.",
     "main": "dist/index.js",
     "scripts": {
-        "test": "es4x-launcher test js:index.test.js",
-        "postinstall": "es4x install",
+        "test": "es4x test js:index.test.js",
+        "postinstall": "es4x install -f",
         "prestart": "tsc || true",
-        "start": "es4x-launcher"
+        "start": "es4x"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@vertx/core": "^3.8.0",
-        "@vertx/pg-client": "^3.8.0",
-        "@vertx/web": "^3.8.0"
+        "@vertx/core": "^4.0.0",
+        "@vertx/pg-client": "^4.0.0",
+        "@vertx/web": "^4.0.0"
     },
     "devDependencies": {
-        "@vertx/unit": "^3.8.0",
-        "typescript": "^3.5.2"
+        "@vertx/unit": "^4.0.0",
+        "es4x-pm": "latest",
+        "typescript": "^4.1.3"
     }
 }
